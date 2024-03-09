@@ -1,0 +1,32 @@
+/* Center the Swiper */
+.mySwiper {
+    width: 50vw;
+    /* You can adjust the width as needed */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    /* Center horizontally */
+}
+
+/* Center the slides */
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    width: 60%;
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Center the slide images */
+.swiper-slide img {
+    display: block;
+    width: 90%;
+    height: 100%;
+    object-fit: cover;
+    margin-top: 4vh;
+}
