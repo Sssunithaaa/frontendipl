@@ -136,20 +136,20 @@ const Leaderboard = () => {
   console.log(endIndex);
   return (
     <MainLayout>
-      <div className="flex flex-col mt-[100px] min-w-xl overflow-clip">
+      <div className="flex flex-col bg-[#] text-black mt-[100px] min-w-xl overflow-clip">
         {/* <Breadcrumbs
           data={Breadcrumbsdata}
           activeName="Leaderboard"
           className="mt-2"
         /> */}
         <div
-          className={`w-full my-0 lg:h-[160px] bg-cover bg-no-repeat border-t-2 md:h-[200px] h-[140px] border-b-2  flex flex-col justify-center items-center`}
+          className={`w-full my-0 lg:h-[160px]   border-t-2 md:h-[200px] h-[140px]  flex flex-col justify-center items-center`}
         >
           <button onClick={() => fetchData()}></button>
           <p className="text-2xl font-bold mt-3 xs:mt-[1px] sm:mt-1 ml-3 lg:text-black lg:text-3xl text-center uppercase">
             Indian priemer Leaugue 2024
           </p>
-          <p className="xs:text-sm my-3 mx-3 text-xl text-center  text-[#05b1e6] font-semibold">
+          <p className="xs:text-sm my-3 mx-3 text-indigo-400 text-xl text-center font-semibold">
             Dive into the pulse-pounding excitement of the IPL!
           </p>
         </div>
@@ -157,9 +157,7 @@ const Leaderboard = () => {
           <div class="py-2 relative w-full">
             <div className="mx-14">
               <div class="flex flex-row justify-center items-center text-center w-full mb-1 mt-4 sm:mb-0">
-                <h2 class="text-2xl uppercase font-bold text-tertiary">
-                  Leader Board
-                </h2>
+                <h2 class="text-2xl uppercase font-bold ">Leader Board</h2>
               </div>
               <div className="flex flex-row justify-between mt-6 mx-2">
                 <div className="flex justify-start">
@@ -182,9 +180,9 @@ const Leaderboard = () => {
                     <motion.button
                       whileTap={{ scale: 0.97 }}
                       onClick={() => setIsOpen(!isOpen)}
-                      className="text-black border-2"
+                      className="border-2"
                     >
-                      <p className="text-black  text-[18px] rounded-md px-3 flex flex-row">
+                      <p className="  text-[18px] rounded-md px-3 flex flex-row">
                         {selectedOption}{" "}
                         <span>
                           <IoMdArrowDropdown className="my-[1px]" size={20} />
@@ -241,7 +239,7 @@ const Leaderboard = () => {
               </div>
             </div>
 
-            <div class="flex justify-center items-center py-4 w-full sm:w-[90%] mx-auto mt-1">
+            <div class="flex justify-center items-center py-4 w-full sm:w-[90%]  mx-auto mt-1">
               <button
                 onClick={handlePrevPage}
                 disabled={currentPage === 0}
@@ -249,32 +247,35 @@ const Leaderboard = () => {
               >
                 <FaArrowLeft color="gray" />
               </button>
-              <div class="flex items-center border-2 xs:w-[90%] w-[90%] lg:w-full border-gray-200 shadow-2xl shadow-black scrollbar-hide rounded-lg">
-                <table class="sm:w-[550px] w-[600px]">
-                  <thead>
+              <div class="flex items-center bg-[#F7F0F5]  xs:w-[90%] w-[90%] lg:w-full border-gray-300 shadow-lg  shadow-black scrollbar-hide rounded-lg">
+                <table
+                  style={{ backgroundColor: "#F7F0F5" }}
+                  class="sm:w-[550px] rounded-md w-[600px]"
+                >
+                  <thead className="bg-indigo-500">
                     <tr>
                       <th
                         scope="col"
-                        class="lg:px-9 px-5 py-3 text-sm font-semibold text-center text-gray-800 uppercase bg-white border-b border-gray-200"
+                        class="lg:px-9 px-5 py-5 text-md text-white font-semibold text-center  uppercase  border-b border-gray-300"
                       >
                         Rank
                       </th>
                       <th
                         scope="col"
-                        class="lg:px-9 px-5 py-3 text-sm font-semibold text-center text-gray-800 uppercase bg-white border-b border-gray-200"
+                        class="lg:px-9 px-5 py-5 text-md text-white font-semibold text-center  uppercase  border-b border-gray-300"
                       >
                         User
                       </th>
                       <th
                         scope="col"
-                        class="lg:px-9 px-5 py-3 text-sm font-semibold text-center text-gray-800 uppercase bg-white border-b border-gray-200"
+                        class="lg:px-9 px-5 py-5 text-md text-white font-semibold text-center  uppercase  border-b border-gray-300"
                       >
                         Score
                       </th>
                     </tr>
                   </thead>
 
-                  {isLoading ? (
+                  {/* {!isLoading ? (
                     <tr className="">
                       <td colSpan={3}>
                         <p className="text-center w-full py-3 animate-pulse">
@@ -282,39 +283,75 @@ const Leaderboard = () => {
                         </p>
                       </td>
                     </tr>
-                  ) : (
-                    <tbody className=" p-7">
-                      {currentPageUserList &&
-                        currentPageUserList.map((record, index) => (
-                          <tr className="" key={index}>
-                            <td class="px-5 py-8 text-sm bg-white border-b flex items-center justify-center h-auto border-gray-200">
-                              <div class=" w-8 h-8  text-center flex justify-center items-center text-black rounded-md whitespace-no-wrap">
-                                <p>{record.rank}</p>
-                              </div>
-                            </td>
-                            <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                              <div class="flex justify-center items-center">
-                                <div class="ml-3">
-                                  <p class="text-gray-900 whitespace-no-wrap">
-                                    {record.username}
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                              <p class="text-gray-900 whitespace-no-wrap flex flex-row justify-center items-center">
+                  ) : ( */}
+                  <tbody
+                    style={{ backgroundColor: "#ffffff" }}
+                    className=" p-7 text-black"
+                  >
+                    {[
+                      {
+                        rank: 1,
+                        username: "User1",
+                        score1: 100,
+                        score2: 200,
+                      },
+                      {
+                        rank: 2,
+                        username: "User2",
+                        score1: 90,
+                        score2: 180,
+                      },
+                      {
+                        rank: 3,
+                        username: "User3",
+                        score1: 80,
+                        score2: 160,
+                      },
+                      {
+                        rank: 4,
+                        username: "User4",
+                        score1: 70,
+                        score2: 140,
+                      },
+                      {
+                        rank: 5,
+                        username: "User5",
+                        score1: 60,
+                        score2: 120,
+                      },
+                    ].map((record, index) => (
+                      <tr className="my-4" key={index}>
+                        <td class="px-5 py-8 text-sm border-b border-y-27 border-gray-300">
+                          <div class="flex justify-center items-center">
+                            <div class="ml-3">
+                              <p class=" whitespace-no-wrap">{record.rank}</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-5 py-8 text-sm  border-b border-y-27  border-gray-300">
+                          <div class="flex justify-center items-center">
+                            <div class="ml-3">
+                              <p class=" whitespace-no-wrap">
+                                {record.username}
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-5 py-8 text-sm  border-b border-y-27 border-gray-300">
+                          <div class="flex justify-center items-center">
+                            <div class="ml-3">
+                              <p class=" whitespace-no-wrap">
                                 {selectedOption === "Weekly"
                                   ? record.score2
                                   : record.score1}
-                                <span>
-                                  <p></p>
-                                </span>
                               </p>
-                            </td>
-                          </tr>
-                        ))}
-                    </tbody>
-                  )}
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                  {/* )} */}
                 </table>
               </div>
               <button

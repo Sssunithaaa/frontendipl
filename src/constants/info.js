@@ -1,3 +1,5 @@
+import images from "./images";
+
 const csk = {
   intro:
     "The IPL 2024 Auction ended on Tuesday at the Coca-Cola Arena in Dubai. Five-time champion Chennai Super Kings bought six new players at the bidding, with the star attractions being the Kiwi duo of Rachin Ravindra and Daryl Mitchell. The MS Dhoni-led side will also have the services of India all-rounder Shardul Thakur, who was purchased for Rs. 4 crore, and the 20-year-old hard-hitting batter from Uttar Pradesh, Sameer Rizvi, who fetched a whopping Rs. 8.40 crore.",
@@ -334,5 +336,28 @@ const data = [
     location: "Chinnaswamy",
   },
 ];
-const teams = { data, rcb, csk, mi, srh, kkr, lsg, gt, dc, pbks, rr };
+const news = [
+  {
+    img: images.vkfaf,
+    news: "The Indian Premier League is scheduled to begin on March 22 at Chennai's Chepauk Stadium, where the reigning champion CSK will play their southern rivals, RCB.",
+  },
+  {
+    img: images.hprs,
+    news: "Sanjay Manjrekar expects Rohit Sharma and Suryakumar Yadav to be a bit uncomfortable playing under Hardik Pandya, who will lead the upcoming season of the IPL",
+  },
+  {
+    img: images.yc,
+    news: "Yuzvendra Chahal picked Rajasthan Royals teammates Jos Buttler or Yashasvi Jaiswal to win the Orange Cap (become the highest run-scorer) in IPL 2024.",
+  },
+  {
+    img: images.pc,
+    news: "Australian captain Pat Cummins will be leading the SRH in IPL 2024 with new colours and new targets.",
+  },
+  {
+    img: images.chair,
+    news: "IPL chairman Arun Dhumal confirms mega auction will be held after 2024 season.  Every team is allowed to retain 3-4 players ahead of a mega auction.",
+  },
+];
+const teams = { news, data, rcb, csk, mi, srh, kkr, lsg, gt, dc, pbks, rr };
+
 export default teams;

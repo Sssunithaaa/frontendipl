@@ -1,64 +1,22 @@
-import React, { useEffect, useRef } from "react";
-import { SectionWrapper } from "../../hoc";
-import { fadeIn, slideIn, textVariant, zoomIn } from "../../utils/motion";
+import { fadeIn } from "../../utils/motion";
 import { styles } from "../../styles";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
-import Breadcrumbs from "../../Components/Breadcrumbs";
 import { getTodayMatch } from "../../services/fixtures";
+import React, { useEffect, useRef, lazy, Suspense } from "react";
 import { MdLeaderboard } from "react-icons/md";
 import MainLayout from "../../Components/MainLayout";
 import { MdNotStarted } from "react-icons/md";
 import { images } from "../../constants";
 import { useQuery } from "@tanstack/react-query";
-import Matches from "../fixtures/matches";
-
 import { useNavigate } from "react-router-dom";
 import { teams } from "../../constants";
-import Card from "./Card";
 import ScrollDownArrow from "../../Components/ScrollDown";
-const QuoteItem = ({ name, text }) => {
-  const [namee, setName] = useState("");
-  const [textt, setText] = useState("");
-  useEffect(() => {
-    // Use setTimeout to update the message after 2000 milliseconds (2 seconds)
-    const timeoutId = setTimeout(() => {
-      setName(name);
-      setText(text);
-    }, 20000);
 
-    // Cleanup function to clear the timeout if the component unmounts
-    return () => clearTimeout(timeoutId);
-  }, []);
+const Quote = lazy(() => import("./Quote"));
+const News = lazy(() => import("./News"));
+const Card = lazy(() => import("./Card"));
 
-  return (
-    <div className="quote-item">
-      <h4>{namee}</h4>
-      <p>{textt}</p>
-    </div>
-  );
-};
-const cursorVariants = {
-  blinking: {
-    opacity: [0, 0, 1, 1],
-    transition: {
-      duration: 1,
-      repeat: Infinity,
-      repeatDelay: 0,
-      ease: "linear",
-      times: [0, 0.5, 0.5, 1],
-    },
-  },
-};
-export function CursorBlinker() {
-  return (
-    <motion.div
-      variants={cursorVariants}
-      animate="blinking"
-      className="inline-block h-5 w-[1px] translate-y-1 bg-slate-900"
-    />
-  );
-}
 const textss = [
   { index: 1, title: "Browse the upcoming matches and make your predictions." },
   { index: 2, title: "Earn points based on the accuracy of your predictions." },
@@ -75,9 +33,9 @@ const HowItWorks = ({ index, title }) => {
       whileInView="show"
       viewport={{ once: true, amount: 0.25 }}
       variants={fadeIn("right", "spring", 0.5 * index, 0.75)}
-      className="w-[100%] sm:w-[90%] mx-auto lg:h-40  p-[1px] my-[10px] rounded-[20px] border-[1px] xs:black-gradient sm:black-gradient md:black-gradient"
+      className="w-[100%] sm:w-[90%] mx-auto lg:h-40  p-[1px] my-[10px] "
     >
-      <div className="bg-[#2b072e] rounded-[20px] text-secondary m-[1px] py-[14px] px-10 min-h-[90px] lg:h-40 flex justify-evenly items-center flex-col">
+      <div className="bg-[#eeedf0] shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-[20px] text-black m-[1px] py-[14px] px-10 min-h-[90px] lg:h-40 flex justify-evenly items-center flex-col">
         <p className="text-lg font-semibold text-start">{title}</p>
       </div>
     </motion.div>
@@ -85,54 +43,6 @@ const HowItWorks = ({ index, title }) => {
 };
 const Intro = () => {
   const navigate = useNavigate("/");
-  const [currentQuote, setCurrentQuote] = useState("Sachin Tendulkar");
-  const [previousQuote, setPreviousQuote] = useState("");
-  const textIndex = useMotionValue(0);
-  const [animationn, setAnimation] = useState(false);
-
-  const texts = [
-    {
-      "Sachin Tendulkar":
-        "IPL is not just a cricket tournament; it's a celebration of the sport, uniting players and fans from all over the world.",
-    },
-  ];
-  const baseText = useTransform(
-    textIndex,
-    (latest) => Object.values(texts[latest])[0] || ""
-  );
-
-  console.log(baseText);
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (latest) => Math.round(latest));
-  const displayText = useTransform(rounded, (latest) =>
-    baseText.get().slice(0, latest)
-  );
-  const updatedThisRound = useMotionValue(true);
-  useEffect(() => {
-    const animation = animate(count, 200, {
-      type: "tween",
-      duration: 7,
-      ease: "easeIn",
-      repeat: 0,
-      delay: 0.5,
-      repeatDelay: 1,
-      onUpdate(latest) {
-        if (latest === 0) {
-          const currentQuoteIndex =
-            textIndex.get() >= texts.length - 1 ? 0 : textIndex.get() + 1;
-          setCurrentQuote(Object.keys(texts[currentQuoteIndex])[0]);
-          setPreviousQuote(Object.keys(texts[textIndex.get()])[1]);
-          textIndex.set(currentQuoteIndex);
-        }
-      },
-    });
-    return () => {
-      console.log(animation.time);
-      animation.stop();
-      setAnimation(true);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   // const teamImages = {
   //   "Chennai Super Kings": images.csk,
@@ -167,8 +77,6 @@ const Intro = () => {
   // let month = date.getMonth() + 1;
   // let year = date.getFullYear();
 
-  // // This arrangement can be altered based on how we want the date's format to appear.
-
   // // const compareDates = (d1, d2) => {
   // //   let date1 = new Date(d1).getTime();
   // //   let date2 = new Date(d2).getTime();
@@ -195,29 +103,7 @@ const Intro = () => {
   //   };
   //   fetchMatchesToday();
   // });
-  // const data = [
-  //   {
-  //     location: "Eden Gardens, Kolkata",
-  //     teamA: {
-  //       teamname: "Kolkata Knight Riders",
-  //       teamImage: "kolkataImageURL",
-  //     },
-  //     teamB: { teamname: "Mumbai Indians", teamImage: "mumbaiImageURL" },
-  //     matchdate: "2024-02-10",
-  //     matchtime: "19:30",
-  //   },
-  //   {
-  //     location: "Eden Gardens, Kolkata",
-  //     teamA: {
-  //       teamname: "Kolkata Knight Riders",
-  //       teamImage: "kolkataImageURL",
-  //     },
-  //     teamB: { teamname: "Mumbai Indians", teamImage: "mumbaiImageURL" },
-  //     matchdate: "2024-02-10",
-  //     matchtime: "19:30",
-  //   },
-  // ];
-  // console.log(dataa?.matches);
+
   // const dataaa = dataa?.matches;
   const data = [];
   const dataa = [];
@@ -243,7 +129,7 @@ const Intro = () => {
     const observerOptions = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.5, // Trigger when half of the section is in view
+      threshold: 0.5,
     };
 
     const handleIntersection = (entries) => {
@@ -297,112 +183,116 @@ const Intro = () => {
     <>
       <MainLayout>
         <section className="h-full w-[100vw] scrollbar-hide">
-          <div
-            className={` w-[100vw]  max-w-7xl mt-20 mb-4 flex flex-col items-start  `}
-          >
+          <div className={` w-[100vw]  mt-20 mb-4 flex flex-col  `}>
+            {/* bg-first bg-cover bg-no-repeat */}
             <div
               ref={sectionRefs.intro}
-              className="lg:h-[85vh] h-[80vh] w-[100vw] flex flex-row justify-center items-center"
+              className="lg:h-[85vh] text-black bg-first bg-cover bg-no-repeat  bg-[#262626] h-[80vh] w-[100vw] flex flex-row justify-center items-center"
             >
               <div className=" w-[100%] lg:w-[100%] flex flex-col mt-[10%] items-center mx-5">
-                <h1 className={`${styles.heroHeadText} text-black`}>
-                  <span className="text-[#381634]">Predictive Play</span>
+                <h1 className={`${styles.heroHeadText} text-purple-500 `}>
+                  Predictive Play
                 </h1>
                 <p
-                  className={`text-2xl mx-20 mt-2 text-black font-semibold  font-md`}
+                  className={`text-2xl z-49 mx-20 mt-2 font-bold  text-secondary font-md`}
                 >
                   Predict the outcomes of the matches and earn points to climb
                   the leaderboard. Compete with other players and showcase your
                   predictive skills!
                 </p>
               </div>
+              <div></div>
               {showIntroArrow && (
                 <ScrollDownArrow targetRef={sectionRefs.quote} />
               )}
             </div>
-            <div ref={sectionRefs.quote}>
-              <div className="lg:flex lg:flex-row mx-5 sm:mx-10 md:mx-10 flex flex-col lg:w-[100vw] lg:px-4 lg:mx-10 lg:gap-x-7 lg:justify-center lg:items-center lg:h-[90vh]">
-                <motion.div
-                  whileInView="show"
-                  viewport={{ once: true, amount: 0.25 }}
-                  initial="hidden"
-                  className="hidden lg:flex text-secondary w-[50%] rounded-md justify-center mx-auto my-4"
-                  variants={fadeIn("left", "spring", 0.4, 2)}
-                >
-                  <img
-                    src={images.crick}
-                    alt="teams"
-                    className="h-[60vh] w-auto rounded-md m-5"
-                  />
-                </motion.div>
-                <motion.div
-                  whileInView="show"
-                  viewport={{ once: true, amount: 0.25 }}
-                  initial="hidden"
-                  variants={fadeIn("right", "spring", 0.4, 2)}
-                  className="my-3 overflow-hidden h-[40%] w-[100%] lg:w-[50%] rounded-xl mx-auto lg:ml-10"
-                  style={{ position: "relative" }}
-                >
-                  <div className="w-[80vw] lg:w-[80%] p-5 m-5 bg-[#faf9fd] shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
-                    <img
-                      src={images.sachin}
-                      alt=""
-                      className="w-14 h-auto rounded-full my-3 mx-auto"
-                    />
-
-                    <motion.div>{displayText}</motion.div>
-                    <p className="font-bold text-purple-950">
-                      -&nbsp;{currentQuote}
-                    </p>
-                  </div>
-                </motion.div>
-                <motion.div
-                  whileInView="show"
-                  viewport={{ once: true, amount: 0.25 }}
-                  initial="hidden"
-                  className="lg:hidden flex flex-col text-secondary w-[80vw] p-2 bg-[#faf9fd] shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-md justify-center items-center mx-auto my-4"
-                  variants={fadeIn("left", "spring", 2, 2)}
-                >
-                  <div className="flex">
-                    <img
-                      src={images.crowd}
-                      alt="teams"
-                      className=" rounded-md"
-                    />
-                  </div>
-                  <div className="py-4 text-black font-semibold">
-                    In a clash of titans, ten formidable teams compete for
-                    ultimate glory. Who will emerge triumphant and etch their
-                    name in history?
-                  </div>
-                </motion.div>
-              </div>
+            <div ref={sectionRefs.quote} className="my-10 w-[90vw] ml-4 px-5">
+              <Quote images={images} />
               {showQuoteArrow && (
+                <ScrollDownArrow targetRef={sectionRefs.fixtures} />
+              )}
+            </div>
+            <div
+              ref={sectionRefs.fixtures}
+              className="my-10 w-[100vw] ml-4 px-5"
+            >
+              <motion.h2
+                variants={fadeIn("right", "spring", 0.5, 1)}
+                whileInView="show"
+                viewport={{ once: true, amount: 0.25 }}
+                initial="hidden"
+                className={`${styles.sectionHeadText} text-left ml-4 mb-2`}
+              >
+                Today's fixtures&nbsp;
+              </motion.h2>
+              <div className="lg:flex lg:flex-row lg:w-full lg:gap-x-3 my-4">
+                <div
+                  className="scrollable-wrapper scrollbar-hide py-5 flex flex-row whitespace-nowrap gap-x-5 lg:gap-x-20"
+                  style={{ width: "95vw", overflowX: "auto" }}
+                >
+                  {teams["data"] &&
+                    teams["data"].map((match, index) => {
+                      const matchDate = new Date(match.matchdate);
+                      const currentDate = new Date();
+                      const isMatchCompleted = matchDate < currentDate;
+                      const currentTime =
+                        currentDate.getHours() * 60 + currentDate.getMinutes();
+
+                      const isTodayBefore330PM =
+                        currentDate.toDateString() ===
+                          matchDate.toDateString() &&
+                        currentTime < 15 * 60 + 30;
+
+                      const matchTimeParts = match.matchtime.split(":");
+                      const matchHours = parseInt(matchTimeParts[0], 10);
+                      const matchMinutes = parseInt(matchTimeParts[1], 10);
+
+                      let isTodayBeforeMatchTime = false;
+                      if (
+                        currentDate.toDateString() === matchDate.toDateString()
+                      ) {
+                        const matchTimeInMinutes =
+                          matchHours * 60 + matchMinutes;
+                        isTodayBeforeMatchTime =
+                          currentTime < matchTimeInMinutes;
+                      }
+
+                      if (!isMatchCompleted && !isTodayBeforeMatchTime) {
+                        return <Card data={match} />;
+                      } else {
+                        return null;
+                      }
+                    })}
+                </div>
+              </div>
+              {showFixturesArrow && (
                 <ScrollDownArrow targetRef={sectionRefs.about} />
               )}
+            </div>
+            <div className="w-[100vw] px-10 my-10">
+              <p className={`${styles.sectionHeadText} ml-4 text-left`}>News</p>
+              <News />
             </div>
             <motion.div
               ref={sectionRefs.about}
               animate="show"
               initial="hidden"
-              className="w-[100vw] mx-auto px-10 my-10"
+              className="w-[100vw]  ml-4 px-10 my-10"
             >
               <motion.p
-                variants={fadeIn("up", "spring", 2, 1)}
+                variants={fadeIn("up", "spring", 0.5, 1)}
                 whileInView="show"
                 viewport={{ once: true, amount: 0.25 }}
                 initial="hidden"
-                className="text-[#6b042c] ml-4 text-start font-semibold"
+                className="text-[#6b042c] text-start font-semibold"
               >
                 About
               </motion.p>
-              <motion.p
-                className={`${styles.sectionHeadText} ml-4 text-start  mb-5`}
-              >
+              <motion.p className={`${styles.sectionHeadText} text-left  mb-5`}>
                 Predictive Play
               </motion.p>
               <div>
-                <p className="text-justify mx-4 font-medium text-lg">
+                <p className="text-justify font-medium text-lg">
                   Welcome to our prediction website, where the excitement of
                   sports meets the thrill of forecasting outcomes! Whether
                   you're a seasoned predictor or just starting out, our platform
@@ -428,60 +318,6 @@ const Intro = () => {
                 ))}
               </div>
               {showHowItWorksArrow && (
-                <ScrollDownArrow targetRef={sectionRefs.fixtures} />
-              )}
-            </div>
-            <div
-              ref={sectionRefs.fixtures}
-              className="my-10 w-[100vw] mx-4 px-10 "
-            >
-              <motion.h2
-                variants={fadeIn("right", "spring", 0.5, 1)}
-                whileInView="show"
-                viewport={{ once: true, amount: 0.25 }}
-                initial="hidden"
-                className={`${styles.sectionHeadText} text-center mb-2`}
-              >
-                Today's fixtures&nbsp;
-              </motion.h2>
-              <div className="lg:flex lg:flex-row lg:w-full lg:gap-x-3 my-4">
-                <div
-                  className="scrollable-wrapper scrollbar-hide py-5 flex flex-row whitespace-nowrap gap-x-5 lg:gap-x-20"
-                  style={{ width: "90vw", overflowX: "auto" }}
-                >
-                  {teams["data"] &&
-                    teams["data"].map((match, index) => {
-                      const matchDate = new Date(match.matchdate);
-                      const currentDate = new Date();
-                      const isMatchCompleted = matchDate < currentDate;
-                      const currentTime =
-                        currentDate.getHours() * 60 + currentDate.getMinutes();
-
-                      const isTodayBefore330PM =
-                        currentDate.toDateString() ===
-                          matchDate.toDateString() &&
-                        currentTime < 15 * 60 + 30;
-                      console.log(currentTime);
-                      const matchTimeParts = match.matchtime.split(":");
-                      const matchHours = parseInt(matchTimeParts[0], 10);
-                      const matchMinutes = parseInt(matchTimeParts[1], 10);
-
-                      const matchTimeInMinutes = matchHours * 60 + matchMinutes;
-
-                      const isTodayBeforeMatchTime =
-                        currentDate.toDateString() ===
-                          matchDate.toDateString() &&
-                        currentTime < matchTimeInMinutes;
-                      console.log(currentDate);
-                      if (!isMatchCompleted && !isTodayBeforeMatchTime) {
-                        return <Card data={match} />;
-                      } else {
-                        return null;
-                      }
-                    })}
-                </div>
-              </div>
-              {showFixturesArrow && (
                 <ScrollDownArrow targetRef={sectionRefs.leaderboard} />
               )}
             </div>
@@ -513,10 +349,9 @@ const Intro = () => {
               </p>
               </motion.div>
               {showLeaderboardArrow && (
-                <ScrollDownArrow targetRef={sectionRefs.leaderboard} />
+                <ScrollDownArrow targetRef={sectionRefs.getStarted} />
               )}
             </div>
-
             <div
               ref={sectionRefs.getStarted}
               className="my-5 w-[100vw] mx-auto ml-5 px-10"
@@ -537,22 +372,18 @@ const Intro = () => {
                   </div>
                   <div className="w-[50%] text-xl gap-y-2 font-medium flex flex-col justify-center items-center">
                     <a
-                      href="/userinfo"
-                      className="bg-brown p-2 rounded-md w-[50%]"
+                      href="/user"
+                      className="bg-brown p-2 rounded-md w-[50%] text-secondary  hover:text-white"
                     >
-                      <button className=" text-secondary  hover:text-white">
-                        SIGN IN
-                      </button>
+                      SIGN IN
                     </a>
+
                     <a
-                      href="/userinfo"
-                      className="bg-brown p-2 rounded-md w-[50%]"
+                      href="/user"
+                      className="bg-brown p-2 rounded-md w-[50%] text-secondary  hover:text-white"
                     >
-                      <button className=" text-secondary  hover:text-white">
-                        Register
-                      </button>
+                      Register
                     </a>
-                    <p></p>
                   </div>
                 </div>
               </motion.div>
@@ -581,4 +412,4 @@ const Intro = () => {
   );
 };
 
-export default SectionWrapper(Intro, "intro");
+export default Intro;

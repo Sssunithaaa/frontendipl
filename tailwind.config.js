@@ -23,6 +23,16 @@ module.exports = {
         abc: "url(C:\\Users\\VINUTHA R\\Desktop\\4th sem\\ipl7-main\\iplproject2frontend\\src\\Assets\\abc.jpg)",
         ground:
           "url(C:\\Users\\VINUTHA R\\Desktop\\4th sem\\ipl7-main\\iplproject2frontend\\src\\Assets\\crick.jpg)",
+        first:
+          "url(C:\\Users\\VINUTHA R\\Desktop\\4th sem\\ipl7-main\\iplproject2frontend\\src\\Assets\\1st.jpg)",
+        second:
+          "url(C:\\Users\\VINUTHA R\\Desktop\\4th sem\\ipl7-main\\iplproject2frontend\\src\\Assets\\2.jpg)",
+        third:
+          "url(C:\\Users\\VINUTHA R\\Desktop\\4th sem\\ipl7-main\\iplproject2frontend\\src\\Assets\\3.jpg)",
+        fourth:
+          "url(C:\\Users\\VINUTHA R\\Desktop\\4th sem\\ipl7-main\\iplproject2frontend\\src\\Assets\\6.jpg)",
+        fifth:
+          "url(C:\\Users\\VINUTHA R\\Desktop\\4th sem\\ipl7-main\\iplproject2frontend\\src\\Assets\\5.jpg)",
       },
     },
   },

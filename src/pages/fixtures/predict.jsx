@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-// import Headers from "../../headers/header";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fadeIn, slideIn, zoomIn } from "../../utils/motion";
 import { SectionWrapper } from "../../hoc";
 import { useSelector } from "react-redux";
-// import CTA from "../../Components/CTA";
 import { images } from "../../constants";
 import toast from "react-hot-toast";
 import MainLayout from "../../Components/MainLayout";
@@ -93,44 +91,37 @@ const PredictMatch = () => {
       isCompleted(false);
     }
   }, [isLoading1, data]);
-  console.log(data?.match_status);
-  console.log(completed);
 
-  console.log(data ? data : null);
-  console.log(data ? data["players"] : null);
   const playerss = data ? data["players"] : null;
   const team_a = data ? data["team_A"] : null;
   const team_b = data ? data["team_B"] : null;
   const batters = data ? data["batsmen"] : null;
   const bowlers = data ? data["bowlers"] : null;
-  console.log(team_a);
-  const teamByName = teams[team_a?.teamshortform?.toLowerCase()];
-  console.log(teamByName);
-  const teamBByName = teams[team_b?.teamshortform?.toLowerCase()];
-  console.log(teamBByName);
 
-  console.log(playerss);
+  // const teamByName = teams[team_a?.teamshortform?.toLowerCase()];
+
+  // const teamBByName = teams[team_b?.teamshortform?.toLowerCase()];
+  const teamByName = teams["rcb"];
+
+  const teamBByName = teams["csk"];
+
   const currentDate = new Date();
 
-  const matchTimeParts = data ? data?.match_time?.split(":") : null; // Split match time into hours and minutes
-  const matchHours = matchTimeParts ? parseInt(matchTimeParts[0], 10) : 0; // Check if matchTimeParts is not null
+  const matchTimeParts = data ? data?.match_time?.split(":") : null;
+  const matchHours = matchTimeParts ? parseInt(matchTimeParts[0], 10) : 0;
   const matchMinutes = matchTimeParts ? parseInt(matchTimeParts[1], 10) : 0;
   const matchTime = matchTimeParts
     ? new Date(currentDate).setHours(matchHours, matchMinutes, 0, 0)
     : 0;
 
   const currentTime = currentDate.getTime();
-  console.log(currentTime);
 
-  // Compare current time with match time and check if it's before 12 AM
   if (
     currentTime > matchTime &&
     currentTime < new Date(currentDate).setHours(0, 0, 0, 0)
   ) {
     setCurrent(true);
   }
-
-  console.log(current);
 
   const { mutate, isLoading: isLoading2 } = useMutation({
     mutationFn: ({
@@ -193,7 +184,7 @@ const PredictMatch = () => {
 
   return (
     <MainLayout>
-      <section className="h-full ">
+      <section className="h-full">
         <div className="flex flex-col mt-[160px] justify-center items-center md:w-full lg:w-full xs:w-[90%]  overflow-hidden ">
           <div className="w-full flex justify-center items-center text-2xl mt-3 font-semibold ">
             <motion.div
@@ -241,7 +232,7 @@ const PredictMatch = () => {
               </motion.p>
               <form
                 onSubmit={handleSubmit(submitHandler)}
-                className="w-[400px] my-5  p-0 space-y-6 mx-auto"
+                className="w-[400px] my-5  p-0 space-y-6"
               >
                 <div>
                   <label className="flex flex-row">
@@ -417,11 +408,11 @@ const PredictMatch = () => {
             <div></div>
           )}
           <div className="mt-5 flex flex-col gap-y-4 ">
-            <div className="bg-[#eeedf0]   shadow-lg p-3 rounded-md">
+            <div className="  mx-3 p-3 rounded-md">
               <p className="text-left font-semibold my-2 text-xl">
                 {team_a?.teamshortform} Current squad
               </p>
-              <div className="text-lg">
+              <div className="text-lg text-left">
                 <b>Wicketkeepers:</b>&nbsp;{teamByName?.Wicketkeepers}
                 <p>
                   <b>Batters:</b>&nbsp;{teamByName?.Batters}
@@ -434,11 +425,11 @@ const PredictMatch = () => {
                 </p>
               </div>
             </div>
-            <div className=" p-3 rounded-md bg-[#eeedf0]   shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]">
+            <div className=" p-3 rounded-md mx-3 shadow-lg">
               <p className="text-left font-semibold my-2 text-xl">
                 {team_b?.teamshortform} Current squad
               </p>
-              <div className="text-lg">
+              <div className="text-lg text-left">
                 <b>Wicketkeepers:</b>&nbsp;{teamBByName?.Wicketkeepers}
                 <p>
                   <b>Batters:</b>&nbsp;{teamBByName?.Batters}

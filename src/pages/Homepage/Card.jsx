@@ -53,13 +53,9 @@ const Card = ({ data }) => {
     // Get current date and time
     const currentDate = new Date();
     const currentTime = currentDate.getHours() * 60 + currentDate.getMinutes();
-
-    // Convert match time to minutes since midnight
     const matchTime =
       parseInt(data.matchtime.split(":")[0]) * 60 +
       parseInt(data.matchtime.split(":")[1]);
-
-    // Check if the match is in the past or future compared to current time
     if (currentTime > matchTime) {
       setCurrentMatch("completed");
     } else if (currentTime > matchTime && matchTime - currentTime <= 90) {
@@ -73,7 +69,7 @@ const Card = ({ data }) => {
     <div
       className={`lg:w-[500px] w-full rounded-xl pb-5 lg:py-5 bg-[#eeedf0] shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]`}
     >
-      <div className="flex flex-col lg:justify-center items-start w-[65vw] lg:w-[30vw] lg:px-5 h-[190px] my-7 ">
+      <div className="flex flex-col lg:justify-center items-start w-[63vw] lg:w-[30vw] lg:px-5 h-[190px] my-7 ">
         <p className="flex flex-row justify-start items-start gap-x-3 mb-2 text-[#0818A8]">
           <span className="ml-5 mt-[2px]">
             <FaLocationDot size={15} />
@@ -86,7 +82,7 @@ const Card = ({ data }) => {
               <img
                 src={teamAImage}
                 alt={data.teamA.teamname}
-                className="w-9 h-auto my-[2px] rounded mx-3"
+                className="w-9 h-auto object-cover my-[2px] rounded mx-3"
               />
               <p>{data.teamA.teamname}</p>
             </div>
@@ -94,7 +90,7 @@ const Card = ({ data }) => {
               <img
                 src={teamBImage}
                 alt={data.teamB}
-                className="w-9 h-auto my-[2px] rounded mx-3"
+                className="w-9 h-auto object-cover my-[2px] rounded mx-3"
               />
               <p>{data.teamB.teamname}</p>
             </div>

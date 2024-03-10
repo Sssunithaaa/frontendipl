@@ -88,8 +88,8 @@ const FixturePage = () => {
   //   fields: item.fields,
   //   pk: item.pk,
   // }));
-  // console.log(array);
-  const upcomingMatches = dataa.filter((match) => {
+
+  const upcomingMatches = jsondata?.filter((match) => {
     const matchDateTime = new Date(`${match.matchdate}T${match.matchtime}`);
     const currentDateTime = new Date();
     return matchDateTime > currentDateTime;
@@ -97,7 +97,7 @@ const FixturePage = () => {
   console.log(upcomingMatches);
 
   // Filter past matches
-  const pastMatches = dataa.filter((match) => {
+  const pastMatches = jsondata?.filter((match) => {
     const matchDateTime = new Date(`${match.matchdate}T${match.matchtime}`);
     const currentDateTime = new Date();
     return matchDateTime < currentDateTime;
@@ -127,7 +127,7 @@ const FixturePage = () => {
 
           <div className="flex flex-wrap gap-y-9 mt-5 pb-10 mx-5 gap-x-3 md:gap-x-5">
             {dataa &&
-              dataa.map((match, index) => (
+              dataa?.map((match, index) => (
                 <Matches
                   data={match}
                   id={match.matchID}

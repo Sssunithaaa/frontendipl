@@ -1,8 +1,3 @@
-import boy from "../Assets/boy.jpg";
-import sboy from "../Assets/sboy.jpg";
-import hboy from "../Assets/hboy.jpg";
-import girl from "../Assets/girl.jpg";
-import eren from "../Assets/eren.jpg";
 import wp7104495 from "../Assets/wp7104495.webp";
 import start from "../Assets/noun-start-over-111855.png";
 import iplogo from "../Assets/iplogo.png";
@@ -23,17 +18,22 @@ import teams from "../Assets/iplteams.jpg";
 import sachin from "../Assets/sachin.jpg";
 import lb from "../Assets/8777094.jpg";
 import crowd from "../Assets/crowd.jpg";
+import vkfaf from "../Assets/vkfaf.webp";
+import hprs from "../Assets/hprs.webp";
+import chair from "../Assets/chair.webp";
+import yc from "../Assets/yc.jpg";
+import pc from "../Assets/pc.webp";
 const images = {
+  pc,
+  yc,
+  chair,
+  vkfaf,
   iplogo,
   cric,
   crowd,
   crick,
   cricket,
-  boy,
-  sboy,
-  hboy,
-  girl,
-  eren,
+  hprs,
   wp7104495,
   gt,
   kkr,
