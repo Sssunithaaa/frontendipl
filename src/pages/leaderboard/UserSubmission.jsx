@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import MainLayout from "../../Components/MainLayout";
 import { TbScoreboard } from "react-icons/tb";
+import { RiArrowDropDownLine } from "react-icons/ri";
 const itemVariants = {
   open: {
     opacity: 1,
@@ -22,6 +23,60 @@ const UserSubmission = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Default");
+  const jsondata = [
+    {
+      matchID: "1",
+      match_teamA: "Team A",
+      match_teamB: "Team B",
+      predictedteam: "Team A",
+      winner_team: "Team A",
+      predictedpom: "Player 1",
+      playerofmatch: "Player 1",
+      predictedmr: "Player 2",
+      mostRunsPlayer: "Player 2",
+      predictedMWK: "Player 3",
+      mostwickettaker: "Player 3",
+    },
+    {
+      matchID: "2",
+      match_teamA: "Team C",
+      match_teamB: "Team D",
+      predictedteam: "Team D",
+      winner_team: "null",
+      predictedpom: "Player 4",
+      playerofmatch: "null",
+      predictedmr: "Player 5",
+      mostrunsplayer: "null",
+      predictedmwk: "Player 6",
+      mosttickettaker: "Player 6",
+    },
+    {
+      matchID: "3",
+      match_teamA: "Team E",
+      match_teamB: "Team F",
+      predictedteam: "Team E",
+      winner_team: "Team F",
+      predictedpom: "Player 7",
+      playerofmatch: "Player 8",
+      predictedmr: "null",
+      mostrunsplayer: "null",
+      predictedmwk: "null",
+      mosttickettaker: "null",
+    },
+    // Add more records as needed
+  ];
+  const [showDetails, setShowDetails] = useState(
+    Array(jsondata?.length).fill(false)
+  );
+
+  const toggleDetails = (index) => {
+    setShowDetails((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
+  console.log(showDetails);
 
   const handleItemClick = (option) => {
     setSelectedOption(option);
@@ -48,7 +103,7 @@ const UserSubmission = () => {
   }, [isLoading]);
   console.log(userState?.userInfo?.username);
   console.log(data?.submissions);
-  const jsondata = data?.submissions;
+  const jsondataa = data?.submissions;
 
   const recordsPerPage = 5;
   // const filteredData =
@@ -94,52 +149,56 @@ const UserSubmission = () => {
               </h2>
             </div>
 
-            <div class="flex justify-center items-center py-4 w-90 mt-7 sm:ml-0 md:ml-0 lg:ml-0 overflow-x-auto scrollbar-hide sm:mx-5 md:mx-5">
-              <div class="flex items-center border-2 border-gray-200 shadow-2xl ml-[200px] lg:ml-0 md:ml-0 sm:ml-0 shadow-black scrollbar-hide rounded-lg">
-                <button
-                  onClick={handlePrevPage}
-                  disabled={currentPage === 0}
-                  className="cursor-pointer my-auto rounded-full p-2 w-[45px] animate-pulse"
-                >
-                  <FaArrowLeft color="gray" />
-                </button>
+            <div class="flex justify-center items-center py-4 w-90 mt-7 sm:ml-0 md:ml-0 lg:ml-0  scrollbar-hide sm:mx-5 md:mx-5">
+              <button
+                onClick={handlePrevPage}
+                disabled={currentPage === 0}
+                className="cursor-pointer my-auto rounded-full p-2 w-[45px] animate-pulse"
+              >
+                <FaArrowLeft color="gray" />
+              </button>
+              <div class="flex items-center border-2 border-gray-200 shadow-2xl lg:ml-0 md:ml-0 sm:ml-0  scrollbar-hide rounded-lg">
                 <table class="min-w-2xl lg:min-w-4xl  leading-normal">
-                  <thead>
+                  <thead className="black-gradient text-white">
                     <tr>
                       <th
                         scope="col"
-                        class="px-5 py-3 text-sm font-semibold text-center text-gray-800 uppercase bg-white border-b border-gray-200"
+                        class="px-5 py-3 text-sm font-semibold text-center text-gray-800 uppercase border-b border-gray-200"
+                      ></th>
+                      <th
+                        scope="col"
+                        class="px-5 py-3 text-sm font-semibold text-center  uppercase border-b border-gray-200"
                       >
                         Match ID
                       </th>
                       <th
                         scope="col"
-                        class="px-5 py-3 text-sm font-semibold text-center text-gray-800 uppercase bg-white border-b border-gray-200"
+                        class="px-5 py-3 text-sm font-semibold text-center  uppercase border-b border-gray-200"
                       >
                         Match
                       </th>
                       <th
                         scope="col"
-                        class="px-5 py-3 text-sm font-semibold text-center text-gray-800 uppercase bg-white border-b border-gray-200"
+                        class="px-5 py-3 text-sm font-semibold text-center  uppercase border-b border-gray-200 hidden lg:table-cell"
                       >
                         Predicted team
                       </th>
 
                       <th
                         scope="col"
-                        class="px-5 py-3 text-sm font-semibold text-center text-gray-800 uppercase bg-white border-b border-gray-200"
+                        class="px-5 py-3 text-sm font-semibold text-center  uppercase border-b border-gray-200 hidden lg:table-cell"
                       >
                         Player of the match
                       </th>
                       <th
                         scope="col"
-                        class="px-5 py-3 text-sm font-semibold text-center text-gray-800 uppercase bg-white border-b border-gray-200"
+                        class="px-5 py-3 text-sm font-semibold text-center  uppercase border-b border-gray-200 hidden lg:table-cell"
                       >
                         Most runs
                       </th>
                       <th
                         scope="col"
-                        class="px-5 py-3 text-sm font-semibold text-center text-gray-800 uppercase bg-white border-b border-gray-200"
+                        class="px-5 py-3 text-sm font-semibold text-center  uppercase border-b border-gray-200 hidden lg:table-cell"
                       >
                         Most wickets
                       </th>
@@ -150,139 +209,176 @@ const UserSubmission = () => {
                     {jsondata
                       ?.slice(startIndex, endIndex)
                       .map((record, index) => (
-                        <tr
-                          className={` hover:bg-black/50 hover:cursor-pointer`}
-                        >
-                          <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                            <span
-                              class={` relative inline-block px-5 py-1 font-semibold leading-tight`}
-                            >
+                        <React.Fragment key={index}>
+                          <tr
+                            className={`hover:bg-black/50 hover:cursor-pointer`}
+                          >
+                            <td className="px-5 py-5 text-sm  border-b ">
+                              <RiArrowDropDownLine
+                                size={25}
+                                onClick={() => toggleDetails(index)}
+                              />
+                            </td>
+                            <td className="px-5 py-5 text-sm  border-b border-gray-200">
                               <span
-                                aria-hidden="true"
-                                class={` absolute inset-0  rounded-full opacity-50`}
-                              ></span>
-                              <span class="relative">{index}</span>
-                            </span>
-                          </td>
-                          <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                            <div class="flex justify-center items-center">
-                              <div class="ml-3">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                  {record.match_teamA} vs {record.match_teamB}
-                                </p>
+                                className={`relative inline-block px-5 py-1 font-semibold leading-tight`}
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  className={`absolute inset-0 rounded-full opacity-50`}
+                                ></span>
+                                <span className="relative">{index}</span>
+                              </span>
+                            </td>
+                            <td class="px-5 py-5 text-sm  border-b border-gray-200">
+                              <div class="flex justify-center items-center">
+                                <div class="ml-3">
+                                  <p class=" whitespace-no-wrap">
+                                    {record.match_teamA} vs {record.match_teamB}
+                                  </p>
+                                </div>
                               </div>
-                            </div>
-                          </td>
-                          <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                            <span
-                              class={`${
-                                record.predictedteam === record.winner_team
-                                  ? "text-green-900"
-                                  : record.winner_team === null
-                                  ? "text-black"
-                                  : "text-red-700"
-                              } relative inline-block px-5 py-1 font-semibold leading-tight`}
-                            >
+                            </td>
+                            <td class="px-5 py-5 text-sm  border-b border-gray-200 hidden lg:table-cell">
                               <span
-                                aria-hidden="true"
                                 class={`${
                                   record.predictedteam === record.winner_team
-                                    ? "bg-green-200"
+                                    ? "text-green-900"
                                     : record.winner_team === null
-                                    ? "bg-white"
-                                    : "bg-red-200"
-                                } absolute inset-0 bg-green-200 rounded-full opacity-50`}
-                              ></span>
-                              <span class="relative">
-                                {record.predictedteam}
+                                    ? "text-black"
+                                    : "text-red-700"
+                                } relative inline-block px-5 py-1 font-semibold leading-tight`}
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  class={`${
+                                    record.predictedteam === record.winner_team
+                                      ? "bg-green-200"
+                                      : record.winner_team === null
+                                      ? "bg-white"
+                                      : "bg-red-200"
+                                  } absolute inset-0 bg-green-200 rounded-full opacity-50`}
+                                ></span>
+                                <span class="relative">
+                                  {record.predictedteam}
+                                </span>
                               </span>
-                            </span>
-                          </td>
-                          <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                            <span
-                              class={`${
-                                record.predictedpom === record.playerofmatch
-                                  ? "text-green-900"
-                                  : record.playerofmatch === null
-                                  ? "text-black"
-                                  : "text-red-700"
-                              } relative inline-block px-5 py-1 font-semibold leading-tight`}
-                            >
+                            </td>
+                            <td class="px-5 py-5 text-sm  border-b border-gray-200 hidden lg:table-cell">
                               <span
-                                aria-hidden="true"
                                 class={`${
                                   record.predictedpom === record.playerofmatch
-                                    ? "bg-green-200"
+                                    ? "text-green-900"
                                     : record.playerofmatch === null
-                                    ? "bg-white"
-                                    : "bg-red-200"
-                                } absolute inset-0 bg-green-200 rounded-full opacity-50`}
-                              ></span>
-                              <span class="relative">
-                                {record.predictedpom}
+                                    ? "text-black"
+                                    : "text-red-700"
+                                } relative inline-block px-5 py-1 font-semibold leading-tight`}
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  class={`${
+                                    record.predictedpom === record.playerofmatch
+                                      ? "bg-green-200"
+                                      : record.playerofmatch === null
+                                      ? "bg-white"
+                                      : "bg-red-200"
+                                  } absolute inset-0 bg-green-200 rounded-full opacity-50`}
+                                ></span>
+                                <span class="relative">
+                                  {record.predictedpom}
+                                </span>
                               </span>
-                            </span>
-                          </td>
-                          <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                            <span
-                              class={`${
-                                record.predictedmr === record.mostrunsplayer
-                                  ? "text-green-900"
-                                  : record.mostrunsplayer !== null
-                                  ? "text-red-700"
-                                  : "text-black"
-                              } relative inline-block px-5 py-1 font-semibold leading-tight`}
-                            >
+                            </td>
+                            <td class="px-5 py-5 text-smborder-b border-gray-200 hidden lg:table-cell">
                               <span
-                                aria-hidden="true"
                                 class={`${
                                   record.predictedmr === record.mostrunsplayer
-                                    ? "bg-green-200"
-                                    : record.mostrunsplayer === null
-                                    ? "bg-white"
-                                    : "bg-red-200"
-                                } absolute inset-0 bg-green-200 rounded-full opacity-50`}
-                              ></span>
-                              <span class="relative">{record.predictedmr}</span>
-                            </span>
-                          </td>
-                          <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                            <span
-                              class={`${
-                                record.predictedmwk === record.mostwickettaker
-                                  ? "text-green-700"
-                                  : record.mostwickettaker === null
-                                  ? "text-black"
-                                  : "text-red-700"
-                              } relative inline-block px-5 py-1 font-semibold leading-tight`}
-                            >
+                                    ? "text-green-900"
+                                    : record.mostrunsplayer !== null
+                                    ? "text-red-700"
+                                    : "text-black"
+                                } relative inline-block px-5 py-1 font-semibold leading-tight`}
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  class={`${
+                                    record.predictedmr === record.mostrunsplayer
+                                      ? "bg-green-200"
+                                      : record.mostrunsplayer === null
+                                      ? "bg-white"
+                                      : "bg-red-200"
+                                  } absolute inset-0 bg-green-200 rounded-full opacity-50`}
+                                ></span>
+                                <span class="relative">
+                                  {record.predictedmr}
+                                </span>
+                              </span>
+                            </td>
+                            <td class="px-5 py-5 text-sm  border-b border-gray-200 hidden lg:table-cell">
                               <span
-                                aria-hidden="true"
                                 class={`${
                                   record.predictedmwk === record.mostwickettaker
-                                    ? "bg-green-200"
+                                    ? "text-green-700"
                                     : record.mostwickettaker === null
-                                    ? "bg-white"
-                                    : "bg-red-200"
-                                } absolute inset-0 bg-green-200 rounded-full opacity-50`}
-                              ></span>
-                              <span class="relative">
-                                {record.predictedmwk}
+                                    ? "text-black"
+                                    : "text-red-700"
+                                } relative inline-block px-5 py-1 font-semibold leading-tight`}
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  class={`${
+                                    record.predictedmwk ===
+                                    record.mostwickettaker
+                                      ? "bg-green-200"
+                                      : record.mostwickettaker === null
+                                      ? "bg-white"
+                                      : "bg-red-200"
+                                  } absolute inset-0 bg-green-200 rounded-full opacity-50`}
+                                ></span>
+                                <span class="relative">
+                                  {record.predictedmwk}
+                                </span>
                               </span>
-                            </span>
-                          </td>
-                        </tr>
+                            </td>
+                          </tr>
+                          {showDetails[index] && (
+                            <tr>
+                              <td
+                                colSpan={6}
+                                className="text-left px-5 py-5 text-md  border-b border-gray-20"
+                              >
+                                <div className="ml-10">
+                                  <p className="my-2">
+                                    Team: {record.winner_team}
+                                  </p>
+
+                                  <p className="my-2">
+                                    Most wicket: {record.predictedmwk}
+                                  </p>
+
+                                  <p className="my-2">
+                                    Most wicktes: {record.predictedmr}
+                                  </p>
+
+                                  <p className="my-2">
+                                    Player of the match: {record.predictedpom}
+                                  </p>
+                                </div>
+                              </td>
+                            </tr>
+                          )}
+                        </React.Fragment>
                       ))}
                   </tbody>
                 </table>
-                <button
-                  onClick={handleNextPage}
-                  disabled={endIndex >= jsondata?.length}
-                  className="cursor-pointer my-auto rounded-full bg-black/10 p-2 w-[55px] animate-pulse"
-                >
-                  <FaArrowRight color="gray" />
-                </button>
               </div>
+              <button
+                onClick={handleNextPage}
+                disabled={endIndex >= jsondata?.length}
+                className="cursor-pointer my-auto rounded-full p-2 w-[45px] animate-pulse"
+              >
+                <FaArrowRight color="gray" />
+              </button>
             </div>
           </div>
         </div>

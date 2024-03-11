@@ -98,35 +98,35 @@ const Authform = () => {
           document.getElementById("error")
         )}
       <MainLayout>
-        <section className="mt-[60px] bg-neutral-100  h-full w-[100vw] scrollbar-hide">
-          <div className=" flex  rounded-lg justify-center items-center w-full overflow-y-auto bg-neutral-100">
+        <section className="mt-[60px] bg-gray-400  h-full w-[100vw] scrollbar-hide">
+          <div className=" flex  rounded-lg justify-center  h-scteen bg-gray-300 items-center  w-full overflow-y-auto">
             <div
               className={`${
-                variant === "REGISTER" ? " mb-[20px]" : "mt-3"
-              } mb-3 sm:w-full rounded-lg max-w-lg w-full mx-6 font-sans sm:max-w-md  `}
+                variant === "REGISTER" ? " mb-[20px]" : "mt-24"
+              } mb-10 sm:w-full mt-24  h-full rounded-lg max-w-lg w-full mx-6 font-sans sm:max-w-md shadow-2xl shadow-black `}
             >
-              <div className="bg-white mt-24 px-4 py-8 shadow sm:rounded-lg rounded-lg ">
-                <div className="flex flex-row justify-evenly mb-4 text-center font-bold">
-                  <div
-                    onClick={variant !== "LOGIN" ? toggleVariant : () => {}}
-                    className={`${
-                      variant === "REGISTER"
-                        ? ""
-                        : " border-b-[1px] border-black bg-gray-100"
-                    }  w-[50%] cursor-pointer h-10 my-0`}
-                  >
-                    <p className="my-2">SIGN IN</p>
-                  </div>
-                  <div
-                    onClick={variant !== "REGISTER" ? toggleVariant : () => {}}
-                    className={`${
-                      variant === "REGISTER"
-                        ? "border-black border-b-[1px] bg-gray-100"
-                        : ""
-                    }  w-[50%] cursor-pointer h-10 my-0`}
-                  >
-                    <p className="my-2">SIGN UP</p>
-                  </div>
+              <div className="bg-white  px-4 py-8 shadow sm:rounded-lg rounded-lg ">
+                <div className="flex flex-row justify-evenly mb-4">
+                  {variant === "LOGIN" && (
+                    <div className={`  w-[100%] cursor-pointer h-14`}>
+                      <p className="my-2 text-xl ml-2 font-bold text-left blue-text-gradient">
+                        SIGN IN
+                      </p>
+                      <p className="my-2 text-md ml-2 font-medium text-left">
+                        Sign in below
+                      </p>
+                    </div>
+                  )}
+                  {variant === "REGISTER" && (
+                    <div className={` w-[100%] cursor-pointer h-14`}>
+                      <p className="my-2 text-xl ml-2 font-bold text-left blue-text-gradient">
+                        SIGN UP
+                      </p>
+                      <p className="my-2 text-md ml-2 font-medium text-left">
+                        Sign up below
+                      </p>
+                    </div>
+                  )}
                 </div>
                 <form
                   onSubmit={handleSubmit(onSubmit)}
@@ -139,6 +139,7 @@ const Authform = () => {
                     register={register}
                     errors={errors}
                     disabled={isLoading}
+                    variant={variant}
                   />
 
                   {variant === "REGISTER" && (
@@ -149,6 +150,7 @@ const Authform = () => {
                       register={register}
                       errors={errors}
                       disabled={isLoading}
+                      variant={variant}
                     />
                   )}
                   {variant === "REGISTER" && (
@@ -159,6 +161,7 @@ const Authform = () => {
                       register={register}
                       errors={errors}
                       disabled={isLoading}
+                      variant={variant}
                     />
                   )}
                   <Input
@@ -168,6 +171,7 @@ const Authform = () => {
                     register={register}
                     errors={errors}
                     disabled={isLoading}
+                    variant={variant}
                   />
                   {variant === "REGISTER" && (
                     <Input
@@ -177,6 +181,7 @@ const Authform = () => {
                       register={register}
                       errors={errors}
                       disabled={isLoading}
+                      variant={variant}
                     />
                   )}
                   {/* prettier-ignore */}
@@ -196,7 +201,7 @@ const Authform = () => {
 
                   <div
                     onClick={toggleVariant}
-                    className="underline cursor-pointer text-md font-medium text-[#c456b9]"
+                    className="underline cursor-pointer text-md font-medium text-[#3486eb]"
                   >
                     {variant === "LOGIN" ? "Create an account" : "Login"}
                   </div>

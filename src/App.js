@@ -21,14 +21,14 @@ function App() {
     }, 2000);
   }, []);
   return (
-    <div className="App bg-neutral-100 lg:w-[100vw] overflow-hidden w-[100vw]">
+    <div className="App  lg:w-[100vw] overflow-hidden w-[100vw]">
       {isLoading ? (
         <Loading />
       ) : (
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<Introo />}></Route>
-            <Route exact path="/user" element={<Authform />}></Route>
+            <Route exact path="/register" element={<Authform />}></Route>
             <Route exact path="/board" element={<Leaderboard />}></Route>
             <Route
               exact
@@ -47,7 +47,7 @@ function App() {
               path="/lbparticipate"
               element={<LeaderboardForm />}
             ></Route>
-            <Route exact path="/profile" element={<ProfilePage />}></Route>
+            <Route exact path="/user" element={<ProfilePage />}></Route>
           </Routes>
         </BrowserRouter>
       )}

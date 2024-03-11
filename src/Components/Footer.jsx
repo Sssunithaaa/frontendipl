@@ -36,7 +36,7 @@ const CTA = () => {
   // Do something with the URL
 
   return (
-    <>
+    <div>
       <section className=" bottom-0 left-0 right-0 w-full">
         <svg
           className="h-auto max-h-40 w-full translate-y-[1px]"
@@ -107,7 +107,7 @@ const CTA = () => {
           </div>
         </section>
       </section>
-    </>
+    </div>
   );
 };
 

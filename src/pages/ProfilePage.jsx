@@ -1,16 +1,42 @@
-import { useQuery } from "@tanstack/react-query";
-import MainLayout from "../Components/MainLayout";
 import React from "react";
 import { images } from "../constants";
+import MainLayout from "../Components/MainLayout";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
-  const { data, isLoading, isSuccess, refetch } = useQuery({
-    queryFn: () => {},
-    queryKey: ["profile"],
-  });
+  const navigate = useNavigate();
   return (
     <MainLayout>
-      <div className="container h-screen w-screen justify-center bg-[#071e34] "></div>
+      <div className="container w-screen mt-24 overflow-hidden h-screen flex justify-center items-center">
+        <div className="flex flex-col items-center">
+          <div className=" w-[90%]">
+            <p className="text-3xl my-3 blue-text-gradient font-bold">
+              Let's get started
+            </p>
+
+            <p className="text-lg">
+              Create an account or login if you already have one
+            </p>
+          </div>
+          <div>
+            <img src={images.sign} alt="signform" className="w-80" />
+          </div>
+          <div className="flex flex-col space-y-3">
+            <button
+              onClick={() => navigate("/register")}
+              className="bg-blue w-[100%] text-white hover:opacity-90 py-2 px-24 rounded-md shadow-lg  transition-colors duration-300 "
+            >
+              SIGN IN
+            </button>
+            <button
+              onClick={() => navigate("/register")}
+              className="bg-blue w-[100%] text-white hover:opacity-90 py-2 px-24 rounded-md shadow-lg transition-colors duration-300"
+            >
+              SIGN UP
+            </button>
+          </div>
+        </div>
+      </div>
     </MainLayout>
   );
 };

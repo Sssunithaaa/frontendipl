@@ -23,7 +23,9 @@ import hprs from "../Assets/hprs.webp";
 import chair from "../Assets/chair.webp";
 import yc from "../Assets/yc.jpg";
 import pc from "../Assets/pc.webp";
+import sign from "../Assets/4957136.jpg";
 const images = {
+  sign,
   pc,
   yc,
   chair,
