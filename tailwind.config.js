@@ -33,6 +33,11 @@ module.exports = {
           "url(C:\\Users\\VINUTHA R\\Desktop\\4th sem\\ipl7-main\\iplproject2frontend\\src\\Assets\\6.jpg)",
         fifth:
           "url(C:\\Users\\VINUTHA R\\Desktop\\4th sem\\ipl7-main\\iplproject2frontend\\src\\Assets\\5.jpg)",
+        sixth:
+          "conic-gradient(from 225deg, #FFC876,#79FFF7,#9F53FF,#FF98E2,#FFC876)",
+        seventh: "radial-gradient(var(--tw-gradient-stops))",
+        landscape:
+          "url(C:\\Users\\VINUTHA R\\Desktop\\4th sem\\ipl7-main\\iplproject2frontend\\src\\Assets\\k.jpg)",
       },
     },
   },

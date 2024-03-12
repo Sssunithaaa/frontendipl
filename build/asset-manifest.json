@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.4bca41f4.css",
-    "main.js": "/static/js/main.fb2069b1.js",
+    "main.css": "/static/css/main.7c35bf7a.css",
+    "main.js": "/static/js/main.8850226d.js",
     "static/js/246.c4c6017e.chunk.js": "/static/js/246.c4c6017e.chunk.js",
-    "static/js/723.805720ac.chunk.js": "/static/js/723.805720ac.chunk.js",
-    "static/js/972.df8bcbc3.chunk.js": "/static/js/972.df8bcbc3.chunk.js",
+    "static/js/723.2d84197f.chunk.js": "/static/js/723.2d84197f.chunk.js",
+    "static/js/972.52089215.chunk.js": "/static/js/972.52089215.chunk.js",
     "static/media/crick.jpg": "/static/media/crick.1d89177142facd96c58d.jpg",
     "static/media/aksh-yadav-bY4cqxp7vos-unsplash.jpg": "/static/media/aksh-yadav-bY4cqxp7vos-unsplash.e007dd8f673b3f245776.jpg",
     "static/media/8777094.jpg": "/static/media/8777094.f2e8a9e27b0bc05af036.jpg",
+    "static/media/4957136.jpg": "/static/media/4957136.1e4196abf5971dfd59cc.jpg",
     "static/media/wp4059913-ipl-2019-wallpapers.jpg": "/static/media/wp4059913-ipl-2019-wallpapers.ef9178e57a3dbe40b8bd.jpg",
     "static/media/iplteams.jpg": "/static/media/iplteams.5b1a877963f05767ccfa.jpg",
     "static/media/csk.png": "/static/media/csk.6687f3dc3c2b826be3f3.png",
@@ -32,14 +33,14 @@
     "static/media/chair.webp": "/static/media/chair.56a0f1a107ec51d4f2bf.webp",
     "static/media/noun-start-over-111855.png": "/static/media/noun-start-over-111855.7bffc2361b5195d28570.png",
     "index.html": "/index.html",
-    "main.4bca41f4.css.map": "/static/css/main.4bca41f4.css.map",
-    "main.fb2069b1.js.map": "/static/js/main.fb2069b1.js.map",
+    "main.7c35bf7a.css.map": "/static/css/main.7c35bf7a.css.map",
+    "main.8850226d.js.map": "/static/js/main.8850226d.js.map",
     "246.c4c6017e.chunk.js.map": "/static/js/246.c4c6017e.chunk.js.map",
-    "723.805720ac.chunk.js.map": "/static/js/723.805720ac.chunk.js.map",
-    "972.df8bcbc3.chunk.js.map": "/static/js/972.df8bcbc3.chunk.js.map"
+    "723.2d84197f.chunk.js.map": "/static/js/723.2d84197f.chunk.js.map",
+    "972.52089215.chunk.js.map": "/static/js/972.52089215.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4bca41f4.css",
-    "static/js/main.fb2069b1.js"
+    "static/css/main.7c35bf7a.css",
+    "static/js/main.8850226d.js"
   ]
 }

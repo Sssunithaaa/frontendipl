@@ -75,7 +75,7 @@ const Headers = () => {
   };
   return (
     <>
-      <section className="fixed left-0 right-0 top-0 m-0 z-50 bg-[#151515] py-1">
+      <section className="fixed left-0 right-0 top-0 m-0 z-50 bg-[#0E0C15] py-1">
         <header className="container mx-auto my-0 flex items-center justify-between px-5 sm:px-0 py-2">
           <div className="left-0 text-xl flex flex-row justify-center items-center gap-x-5 my-auto">
             <div className=" flex flex-row">

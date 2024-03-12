@@ -24,7 +24,33 @@ import chair from "../Assets/chair.webp";
 import yc from "../Assets/yc.jpg";
 import pc from "../Assets/pc.webp";
 import sign from "../Assets/4957136.jpg";
+import hero from "../Assets/hero.jpg";
+import a from "../Assets/a.jpg";
+import b from "../Assets/b.jpg";
+import c from "../Assets/c.jpg";
+import d from "../Assets/d.jpg";
+import e from "../Assets/e.jpg";
+import f from "../Assets/f.jpg";
+import g from "../Assets/g.jpg";
+import h from "../Assets/h.jpg";
+import i from "../Assets/i.jpg";
+import j from "../Assets/j.jpg";
+import k from "../Assets/k.jpg";
+import error from "../Assets/3582365.jpg";
 const images = {
+  error,
+  a,
+  b,
+  c,
+  d,
+  e,
+  f,
+  g,
+  h,
+  i,
+  j,
+  k,
+  hero,
   sign,
   pc,
   yc,

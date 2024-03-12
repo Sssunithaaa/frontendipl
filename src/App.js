@@ -21,7 +21,7 @@ function App() {
     }, 2000);
   }, []);
   return (
-    <div className="App  lg:w-[100vw] overflow-hidden w-[100vw]">
+    <div className="App bg-[#0E0C15]  lg:w-[100vw] overflow-hidden w-[100vw]">
       {isLoading ? (
         <Loading />
       ) : (
