@@ -25,6 +25,7 @@
     "react-scroll": "^1.9.0",
     "react-share": "^5.1.0",
     "react-share-social": "^0.1.55",
+    "react-toastify": "^10.0.4",
     "swiper": "^11.0.7",
     "web-vitals": "^2.1.4"
   },

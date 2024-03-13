@@ -50,6 +50,13 @@
     background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
     background: -webkit-linear-gradient(-90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
 }
+.purple-gradient {
+    background: "#0E0315";
+        background: linear-gradient(90.13deg, #10113f 1.9%, #441bca 97.5%);
+        background: -webkit-linear-gradient(-90.13deg, #10113f 1.9%,
+            #441bca 97.5%);
+    }
+
 
 .orange-text-gradient {
     background: #f12711;
@@ -86,11 +93,11 @@
     background: #56ccf2;
     /* fallback for old browsers */
     background: -webkit-linear-gradient(to top,
-            #2f80ed,
+            #063b81,
             #56ccf2);
     /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to top,
-            #2f80ed,
+            #063b81,
             #56ccf2);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     -webkit-background-clip: text;

@@ -94,7 +94,6 @@ const Input = ({
             disabled && "opacity-50"
           )}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
         />
         {type === "password" && (
           <div

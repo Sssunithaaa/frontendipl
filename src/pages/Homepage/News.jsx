@@ -12,7 +12,7 @@ const News = () => {
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             initial="hidden"
-            className="flex flex-col  w-[95%] mg:w-[50%] lg:h-[60vh] h-auto lg:w-[30%] mx-auto lg:m-[20px] bg-[#14111f] text-white rounded-sm justify-center items-center my-4"
+            className="flex flex-col  w-[95%] mg:w-[50%] lg:h-[60vh] h-[40vh] lg:w-[30%] mx-auto lg:m-[20px] bg-neutral-100 shadow-md rounded-sm justify-center items-center my-4"
             variants={fadeIn("left", "spring", 0.5, 2)} // Assuming fadeIn is defined
           >
             <div className="lg:w-[100%] lg:h-[45vh] h-[48vh]  flex">

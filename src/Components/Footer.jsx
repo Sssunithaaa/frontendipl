@@ -38,72 +38,51 @@ const CTA = () => {
   return (
     <footer class="bg-[#0E0315] bottom-0 pt-4 pb-8 xl:pt-8">
       <div class="max-w-screen-lg px-4 mx-auto text-gray-400 xl:max-w-screen-xl sm:px-6 md:px-8 dark:text-gray-300">
-        <ul class="flex flex-col  lg:mx-0  lg:flex-row justify-center pb-8 text-lg font-light">
+        <ul class="flex flex-col  lg:flex-row lg:justify-center justify-start items-start pb-8 text-lg font-light">
           <li class="w-full mx-auto lg:mx-0 md:w-1/3 lg:w-1/3">
-            <div class="text-center font-semibold">
-              <h2 class=" dark:text-gray-200 hover:text-pink-800 text-md font-bold uppercase mb-4">
-                Components
-              </h2>
-              <ul>
-                <li class="mb-4  transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
-                  <a href="#">Elements</a>
-                </li>
-                <li class="mb-4 transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
-                  <a href="#">Forms</a>
-                </li>
-                <li class="mb-4 transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
-                  <a href="#">Commerces</a>
-                </li>
-                <li class="mb-4 transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
-                  <a href="#">Navigation</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="w-full mx-auto lg:mx-0 md:w-1/3 lg:w-1/3">
-            <div class="text-center font-semibold">
-              <h2 class=" dark:text-pink-200 font-bold text-md uppercase mb-4 ">
+            <div class=" font-semibold">
+              <h2 class=" text-pink-800 hover:text-pink-700 font-bold text-md uppercase mb-2 ">
                 Contacts
               </h2>
               <ul>
-                <li class="mb-4  transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
+                <li class="mb-2  transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
                   <a href="#">Github</a>
                 </li>
-                <li class="mb-4  transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
+                <li class="mb-2  transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
                   <a href="#">Facebook</a>
                 </li>
-                <li class="mb-4  transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
+                <li class="mb-2  transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
                   <a href="#">Twitter</a>
                 </li>
-                <li class="mb-4  transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
+                <li class="mb-2  transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
                   <a href="#">LinkedIn</a>
                 </li>
               </ul>
             </div>
           </li>
           <li class="w-full mx-auto lg:mx-0 md:w-1/3 lg:w-1/3">
-            <div class="text-center font-bold">
-              <h2 class=" dark:text-pink-200 font-semibold text-md uppercase mb-4 ">
-                Customization
+            <div class=" font-semibold">
+              <h2 class="text-pink-800 hover:text-pink-700 font-semibold text-md uppercase mb-2 ">
+                Links
               </h2>
               <ul>
-                <li class="mb-4   font-semibold transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
-                  <a href="#">Settings</a>
+                <li class="mb-2   font-semibold transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
+                  <a href="/board">Leaderboard</a>
                 </li>
-                <li class="mb-4  font-semibold transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
-                  <a href="#">Themes</a>
+                <li class="mb-2  font-semibold transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
+                  <a href="/register">Register</a>
                 </li>
-                <li class="mb-4  font-semibold transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
-                  <a href="#">Plugins</a>
+                <li class="mb-2  font-semibold transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
+                  <a href="/fixtures">Fixtures</a>
                 </li>
-                <li class="mb-4  font-semibold transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
-                  <a href="#">LinkedIn</a>
+                <li class="mb-2  font-semibold transition-colors duration-200 hover:text-pink-800 dark:hover:text-white">
+                  <a href="/terms">Terms</a>
                 </li>
               </ul>
             </div>
           </li>
         </ul>
-        <div class="pt-8 flex border-t border-pink-200 max-w-xs mx-auto my-10 items-center justify-between">
+        <div class="pt-8 flex border-t border-pink-200 max-w-xs mx-auto mb-10 items-center justify-between">
           <a href="#">
             <svg
               width="20"

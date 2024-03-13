@@ -5,7 +5,9 @@ import Button from "../Components/Button";
 import { images } from "../constants";
 import { useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
-import toast from "react-hot-toast";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -14,6 +16,7 @@ import { signup, signin } from "../services/user";
 import MainLayout from "../Components/MainLayout";
 import { createPortal } from "react-dom";
 import ErrorMessage from "../Components/Error";
+
 //import MainLayout from "../Components/MainLayout";
 const Authform = () => {
   const navigate = useNavigate();
@@ -27,8 +30,17 @@ const Authform = () => {
       return signup({ username, name, email, password1, password2 });
     },
     onSuccess: (data) => {
+      toast.success("Registration successfull!!", {
+        position: "top-center",
+        autoClose: 1000,
+        style: {
+          width: "auto",
+          style: "flex justify-center",
+        },
+        closeButton: false,
+        progress: undefined,
+      });
       dispatch(userActions.setUserInfo(data));
-      console.log(data);
       localStorage.setItem("account", JSON.stringify(data));
     },
     onError: (error) => {
@@ -41,6 +53,16 @@ const Authform = () => {
       return signin({ username, password1 });
     },
     onSuccess: (data) => {
+      toast.success("Login successfull!", {
+        position: "top-center",
+        autoClose: 1000,
+        style: {
+          width: "auto",
+          style: "flex justify-center",
+        },
+        closeButton: false,
+        progress: undefined,
+      });
       dispatch(userActions.setUserInfo(data));
       localStorage.setItem("account", JSON.stringify(data));
     },
@@ -65,6 +87,7 @@ const Authform = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
@@ -76,6 +99,9 @@ const Authform = () => {
     },
     mode: "onChange",
   });
+  useEffect(() => {
+    reset(); // Reset form values whenever variant changes
+  }, [reset, variant]);
   const onSubmit = (data) => {
     if (variant === "REGISTER") {
       const { username, name, email, password1, password2 } = data;
@@ -89,6 +115,17 @@ const Authform = () => {
       mutatesignin({ username, password1 });
     }
   };
+  const handleClick = () =>
+    toast.success("Wow so easy!", {
+      position: "top-center",
+      autoClose: 1000,
+      style: {
+        width: "auto",
+        style: "flex justify-center",
+      },
+      closeButton: false,
+      progress: undefined,
+    });
 
   return (
     <>
@@ -99,11 +136,16 @@ const Authform = () => {
         )}
       <MainLayout>
         <section className="mt-[60px] bg-gray-400 overflow-hidden w-screen h-full lg:w-screen scrollbar-hide">
-          <div className=" flex  rounded-lg w-[100%] justify-center  h-[100vh] lg:h-[90%] bg-gray-300 items-center overflow-y-auto">
+          <div
+            className={`${
+              variant === "LOGIN" ? "lg:h-[60%]" : "lg:h-[90%]"
+            } flex  rounded-lg w-[100%] justify-center  h-[100vh]  bg-gray-300 items-center overflow-y-auto`}
+          >
+            <ToastContainer />
             <div
               className={`${
-                variant === "LOGIN" ? "h-[40vh]" : ""
-              } lg:my-24 mb-24  flex flex-row h-[70vh] lg:h-[90vh] bg-white w-[90%] lg:w-[60%] rounded-lg w-100 mx-auto font-sans  shadow-2xl shadow-black `}
+                variant === "LOGIN" ? "h-[40%]" : ""
+              } lg:my-24 mb-24  flex flex-row h-[70vh] lg:h-[90%] bg-white w-[90%] lg:w-[60%] rounded-lg w-100 mx-auto font-sans  shadow-2xl shadow-black `}
             >
               <div className="w-[50%] hidden lg:flex overflow-hidden h-[90vh] px-10 justify-center items-center">
                 <div className="flex flex-col bg-white items-center">
@@ -127,7 +169,11 @@ const Authform = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-white w-[100%]  lg:h-auto lg:w-[50%] px-8 py-8 my-auto shadow sm:rounded-lg rounded-lg ">
+              <div
+                className={`${
+                  variant === "LOGIN" ? "lg:h-[60%]" : "lg:h-[90%]"
+                } bg-white w-[100%]   lg:w-[50%] px-8 py-8 my-auto shadow sm:rounded-lg rounded-lg `}
+              >
                 <div className="flex flex-row justify-evenly mb-4">
                   {variant === "LOGIN" && (
                     <div className={`  w-[100%] cursor-pointer h-14`}>
@@ -208,7 +254,12 @@ const Authform = () => {
                     errors.password2?.type === "validate" && (
                       <div className="text-red-500">Passwords do not match</div>
                     )}
-                  <Button disabled={isLoading} fullWidth type="submit">
+                  <Button
+                    onClick={handleClick}
+                    disabled={isLoading}
+                    fullWidth
+                    type="submit"
+                  >
                     {variant === "LOGIN" ? "SIGN IN" : "REGISTER"}
                   </Button>
                 </form>

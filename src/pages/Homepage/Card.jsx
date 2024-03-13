@@ -67,10 +67,10 @@ const Card = ({ data }) => {
   console.log(currentMatch);
   return (
     <div
-      className={`lg:w-[500px] w-auto rounded-xl pb-5 lg:py-5 text-secondary font-semibold bg-[#2c293b] hover:scale-105 transition-all duration-75`}
+      className={`lg:w-[500px] w-auto rounded-xl pb-5 lg:py-5  font-semibold bg-[#eeedf0] shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] transition-all duration-75`}
     >
       <div className="flex flex-col lg:justify-center items-start w-[72vw] lg:w-[30vw] px-5 h-[190px] my-7 ">
-        <p className="flex flex-row justify-start items-start gap-x-3 mb-2 text-[#828df4]">
+        <p className="flex flex-row justify-start items-start gap-x-3 mb-2 text-blue">
           <span className="ml-5 mt-[2px]">
             <FaLocationDot size={15} />
           </span>

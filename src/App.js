@@ -11,6 +11,8 @@ import Authform from "./pages/Authform";
 import LeaderboardForm from "./pages/leaderboard/BoardParticipate";
 import Introo from "./pages/Homepage/Introo";
 import Loading from "./Components/loading";
+import AboutUsPage from "./pages/AboutUs";
+import RulesPage from "./pages/Rules";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +23,7 @@ function App() {
     }, 2000);
   }, []);
   return (
-    <div className="App bg-[#0E0C15]  lg:w-[100vw] overflow-hidden w-[100vw]">
+    <div className="App bg-gray-100  lg:w-[100vw] overflow-hidden w-[100vw]">
       {isLoading ? (
         <Loading />
       ) : (
@@ -41,7 +43,8 @@ function App() {
               path="/fixtures/:matchId"
               element={<PredictMatch />}
             ></Route>
-
+            <Route path="/about" element={<AboutUsPage />}></Route>
+            <Route path="/terms" element={<RulesPage />}></Route>
             <Route
               exact
               path="/lbparticipate"

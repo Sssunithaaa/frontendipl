@@ -5,7 +5,7 @@ const HeroSection = () => {
   const imagess = [
     images.b,
     images.c,
-    images.d,
+
     images.e,
     images.f,
     images.g,
@@ -14,24 +14,20 @@ const HeroSection = () => {
     images.j,
   ];
   return (
-    <div className="hero h-[700px] w-[100vw] relative overflow-hidden">
+    <div className="hero h-[750px] w-[100vw] relative overflow-hidden">
       <div
         className=" absolute top-0 left-0 w-full h-full bg-cover bg-center z-0"
         // style={{ backgroundImage: `url(${images.k})` }}
       ></div>
-      <div className=" flex flex-col mt-[10%] z-50 items-center mx-5">
-        <h1 className={`${styles.heroHeadText} text-purple-600 `}>
-          Predictive Play
-        </h1>
+      <div className=" flex flex-col lg:mt-[10%] mt-[20%] z-50 items-center mx-5">
+        <h1 className={`${styles.heroHeadText}  `}>Predictive Play</h1>
         <p
-          className={`text-xl z-49 mx-20 mt-2 font-bold text-secondary font-md`}
+          className={`text-xl z-49 mx-20 mt-2 font-bold text-[#301a51] font-md`}
         >
-          Predict the outcomes of the matches and earn points to climb the
-          leaderboard. Compete with other players and showcase your predictive
-          skills!
+          Compete with other players and showcase your predictive skills!
         </p>
       </div>
-      <div className="scrollable-images absolute bottom-0 left-0 z-50 w-full flex items-center justify-center overflow-x-auto whitespace-nowrap scrollbar-hide pl-auto lg:mx-10 py-6">
+      <div className="scrollable-images absolute bottom-0 left-0 z-50 w-full flex items-center justify-start overflow-x-auto whitespace-nowrap scrollbar-hide pl-auto lg:mx-10 py-6">
         {imagess.map((image) => (
           <img
             src={image}

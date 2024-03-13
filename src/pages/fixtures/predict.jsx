@@ -14,6 +14,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getMatchDetails } from "../../services/fixtures";
 import { teams } from "../../constants";
 import { getMatchDetailss } from "../../services/fixtures";
+import TeamsPage from "./TeamPage";
+import SuggestedFixtures from "./SuggestedFixtures";
 const PredictMatch = () => {
   const userState = useSelector((state) => state.user);
   const [completed, isCompleted] = useState(false);
@@ -184,7 +186,7 @@ const PredictMatch = () => {
 
   return (
     <MainLayout>
-      <section className="h-full">
+      <section className="h-full bg-white overflow-x-hidden">
         <div className="flex flex-col mt-[160px] justify-center items-center md:w-full lg:w-full xs:w-[90%]  overflow-hidden ">
           <div className="w-full flex justify-center items-center text-2xl mt-3 font-semibold ">
             <motion.div
@@ -407,12 +409,18 @@ const PredictMatch = () => {
           ) : (
             <div></div>
           )}
+          <div className="w-screen">
+            <TeamsPage />
+          </div>
+          <div className="w-screen">
+            <SuggestedFixtures />
+          </div>
           <div className="mt-5 flex flex-col gap-y-4 ">
             <div className="  mx-3 p-3 rounded-md">
-              <p className="text-left font-semibold my-2 text-xl">
+              <p className="text-left text-blue font-semibold my-2 text-xl">
                 {team_a?.teamshortform} Current squad
               </p>
-              <div className="text-lg text-left">
+              <div className="text-lg text-[#10185c] text-left">
                 <b>Wicketkeepers:</b>&nbsp;{teamByName?.Wicketkeepers}
                 <p>
                   <b>Batters:</b>&nbsp;{teamByName?.Batters}
@@ -426,10 +434,10 @@ const PredictMatch = () => {
               </div>
             </div>
             <div className=" p-3 rounded-md mx-3 shadow-lg">
-              <p className="text-left font-semibold my-2 text-xl">
+              <p className="text-left text-blue font-semibold my-2 text-xl">
                 {team_b?.teamshortform} Current squad
               </p>
-              <div className="text-lg text-left">
+              <div className="text-lg text-[#10185c] text-left">
                 <b>Wicketkeepers:</b>&nbsp;{teamBByName?.Wicketkeepers}
                 <p>
                   <b>Batters:</b>&nbsp;{teamBByName?.Batters}
